@@ -37,6 +37,24 @@
           </li>
         </ol>
       </div>
+      <div v-for="(serie,index) in myTVseries" class="box">
+        <ol>
+          <li>Titolo: {{serie.name}}</li>
+          <li>Titolo Originale: {{serie.original_name}}</li>
+          <li>Lingua: <img :src="'flagsimg/' + serie.original_language + '.svg' " style="width:20px;height:20px;">
+          {{serie.original_language}}
+          </li>
+          <li>Voto: {{serie.vote_average}}
+            <div class="stars">
+              <i :class="{yellowstar: serie.vote_average >= 1 }" class="fas fa-star"></i>
+              <i :class="{yellowstar: serie.vote_average >= 2 }" class="fas fa-star"></i>
+              <i :class="{yellowstar: serie.vote_average >= 3 }" class="fas fa-star"></i>
+              <i :class="{yellowstar: serie.vote_average >= 4 }" class="fas fa-star"></i>
+              <i :class="{yellowstar: serie.vote_average == 5 }" class="fas fa-star"></i>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
 
 
