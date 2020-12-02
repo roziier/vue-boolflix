@@ -24,6 +24,9 @@ var app = new Vue({
       })
       .then(response => {
         this.myFilms = response.data.results;
+        for (var i = 0; i < this.myFilms.length; i++) {
+          this.myFilms[i].vote_average = Math.ceil(this.myFilms[i].vote_average / 2);
+        }
         console.log(this.myFilms);
 
 
