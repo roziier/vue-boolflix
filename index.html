@@ -18,7 +18,7 @@
       <input type="text" v-model="userSearch">
       <button type="button" name="button" @click="callAPI">Search</button>
 
-
+      <!-- FILMS -->
       <div v-for="(film,index) in myFilms" class="box">
         <ol>
           <li>Titolo: {{film.title}}</li>
@@ -39,6 +39,7 @@
         <img v-if="film.poster_path == null" :src="'flagsimg/' + imgNull" style="width:185px;height:250px;">
         <img v-else :src="'https://image.tmdb.org/t/p//w185' + film.poster_path">
       </div>
+      <!-- TV SERIES -->
       <div v-for="(serie,index) in myTVseries" class="box">
         <ol>
           <li>Titolo: {{serie.name}}</li>
@@ -56,8 +57,8 @@
             </div>
           </li>
         </ol>
-        <img v-if="serie.backdrop_path == null" :src="'flagsimg/' + imgNull" style="width:185px;height:250px;">
-        <img :src="'https://image.tmdb.org/t/p//w185' + serie.backdrop_path">
+        <img v-if="serie.poster_path == null" :src="'flagsimg/' + imgNull" style="width:185px;height:250px;">
+        <img :src="'https://image.tmdb.org/t/p//w185' + serie.poster_path">
       </div>
     </div>
 
