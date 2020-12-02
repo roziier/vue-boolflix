@@ -7,7 +7,8 @@ var app = new Vue({
     userSearch: '',
     // empty array that I will fill it with API's push
     myFilms: [],
-    myTVseries: []
+    myTVseries: [],
+    imgNull: 'black.jpeg'
   },
   methods: {
     callAPI: function () {
@@ -25,7 +26,7 @@ var app = new Vue({
         for (var i = 0; i < this.myFilms.length; i++) {
           this.myFilms[i].vote_average = Math.round(this.myFilms[i].vote_average / 2);
         }
-        console.log(this.myFilms);
+        console.log('array films: ' + this.myFilms);
       }),
 
       // API to get TV series
@@ -42,7 +43,7 @@ var app = new Vue({
         for (var i = 0; i < this.myTVseries.length; i++) {
           this.myTVseries[i].vote_average = Math.round(this.myTVseries[i].vote_average / 2);
         }
-        console.log(response);
+        console.log('array tv series: ' + response);
       })
     }
 
