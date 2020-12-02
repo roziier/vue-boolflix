@@ -23,7 +23,15 @@
         <ol>
           <li>Titolo: {{film.title}}</li>
           <li>Titolo Originale: {{film.original_title}}</li>
-          <li>Lingua: {{film.original_language}}</li>
+          <li>Lingua: <img v-if="film.original_language == 'en'" src="flagsimg/united-kingdom.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'it'" src="flagsimg/italy.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'fr'" src="flagsimg/france.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'de'" src="flagsimg/germany.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'es'" src="flagsimg/spain.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'ja'" src="flagsimg/japan.svg" style="width:20px;height:20px;">
+                      <img v-if="film.original_language == 'ru'" src="flagsimg/russia.svg" style="width:20px;height:20px;">
+          {{film.original_language}}
+          </li>
           <li>Voto: {{film.vote_average}}
             <div class="stars">
               <i :class="{yellowstar: film.vote_average >= 1 }" class="fas fa-star"></i>
