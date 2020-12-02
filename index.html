@@ -16,6 +16,15 @@
       <input type="text" v-model="userSearch">
       <button type="button" name="button" @click="callAPI">Search</button>
 
+
+      <div v-for="(film,index) in myFilms" class="box">
+        <ol>
+          <li>Titolo: {{film.title}}</li>
+          <li>Titolo Originale: {{film.original_title}}</li>
+          <li>Lingua: {{film.original_language}}</li>
+          <li>Voto: {{film.vote_average}}</li>
+        </ol>
+      </div>
     </div>
 
 

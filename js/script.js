@@ -19,8 +19,7 @@ var app = new Vue({
       // params added to personalize the research
       {
         params: {
-          query: this.userSearch,
-          language: 'it-IT'
+          query: this.userSearch
         }
       })
       .then(response => {
