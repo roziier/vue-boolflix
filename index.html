@@ -16,11 +16,18 @@
 
   <div id="app">
       <nav class="nav">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/320px-Netflix_2015_logo.svg.png" style="width:260px;height:60px;">
-        <div class="search">
-          <input type="text" v-model="userSearch">
-          <button type="button" name="button" @click="callAPI">Search</button>
+        <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/320px-Netflix_2015_logo.svg.png" style="width:260px;height:60px;">
+
+        <div class="search_wrap search_wrap_3">
+          <div class="search_box">
+            <input type="text" v-model="userSearch" class="input" placeholder="Search...">
+            <div @click="callAPI"
+               class="btn btn_common">
+               <i class="fas fa-search"></i>
+            </div>
+          </div>
         </div>
+
       </nav>
 
 
