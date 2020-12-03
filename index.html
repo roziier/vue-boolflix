@@ -36,7 +36,7 @@
             </div>
           </li>
         </ol>
-        <img v-if="film.poster_path == null" :src="'flagsimg/' + imgNull" style="width:185px;height:250px;">
+        <img v-if="film.poster_path == null" :src="'flagsimg/' + imgNull"  style="width:185px;height:250px;">
         <img v-else :src="'https://image.tmdb.org/t/p//w185' + film.poster_path">
       </div>
       <!-- TV SERIES -->
@@ -57,8 +57,9 @@
             </div>
           </li>
         </ol>
-        <img v-if="serie.poster_path == null" :src="'flagsimg/' + imgNull" style="width:185px;height:250px;">
-        <img :src="'https://image.tmdb.org/t/p//w185' + serie.poster_path">
+        <img v-if="serie.poster_path == null" :src="'flagsimg/' + imgNull"  style="width:185px;height:250px;">
+
+        <img v-else :src="'https://image.tmdb.org/t/p//w185' + serie.poster_path">
       </div>
     </div>
 
