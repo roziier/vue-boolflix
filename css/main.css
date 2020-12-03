@@ -61,6 +61,8 @@ i{
 .img{
   display: block;
   border-radius: 20px;
+  height: 500px;
+  width: 342px;
 }
 
 .text{
