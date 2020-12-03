@@ -8,7 +8,8 @@ var app = new Vue({
     // empty array that I will fill it with API's push
     myFilms: [],
     myTVseries: [],
-    imgNull: 'black.jpeg'
+    imgNull: 'black.jpeg',
+    hover: false
   },
   methods: {
     callAPI: function () {
