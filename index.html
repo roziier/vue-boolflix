@@ -14,7 +14,7 @@
   </head>
   <body>
 
-    <div id="app">
+  <div id="app">
       <nav class="nav">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/320px-Netflix_2015_logo.svg.png" style="width:260px;height:60px;">
         <div class="search">
@@ -25,49 +25,51 @@
 
 
       <!-- contenitore flex -->
-      <div class="flex">
-
+    <div class="flex">
 
       <!-- FILMS -->
-      <div v-for="(film,index) in myFilms" class="box">
-        <div class="hidden">
-          <ol>
-            <li>Titolo: {{film.title}}</li>
-            <li>Titolo Originale: {{film.original_title}}</li>
-            <li>Lingua: <img :src="'flagsimg/' + film.original_language + '.svg' " style="width:20px;height:20px;">
-            {{film.original_language}}
-            </li>
-            <li>Voto: {{film.vote_average}}
-              <div class="stars">
-                <i :class="{yellowstar: film.vote_average >= 1 }" class="fas fa-star"></i>
-                <i :class="{yellowstar: film.vote_average >= 2 }" class="fas fa-star"></i>
-                <i :class="{yellowstar: film.vote_average >= 3 }" class="fas fa-star"></i>
-                <i :class="{yellowstar: film.vote_average >= 4 }" class="fas fa-star"></i>
-                <i :class="{yellowstar: film.vote_average == 5 }" class="fas fa-star"></i>
-              </div>
-            </li>
-          </ol>
+      <div v-for="(film,index) in myFilms" class="boximage">
+          <!-- text -->
+          <div class="text">
 
-        </div>
+              <h2 class="title">{{film.title}}</h2>
+              <h2 class="originalTitle">{{film.original_title}}</h2>
+              <img :src="'flagsimg/' + film.original_language + '.svg' " style="width:60px;height:60px;">
+                <!-- div for stars -->
+                <div class="stars">
+                  <i :class="{yellowstar: film.vote_average >= 1 }" class="fas fa-star"></i>
+                  <i :class="{yellowstar: film.vote_average >= 2 }" class="fas fa-star"></i>
+                  <i :class="{yellowstar: film.vote_average >= 3 }" class="fas fa-star"></i>
+                  <i :class="{yellowstar: film.vote_average >= 4 }" class="fas fa-star"></i>
+                  <i :class="{yellowstar: film.vote_average == 5 }" class="fas fa-star"></i>
+                </div>
+                <!-- div for overview -->
+                <div class="overview">
+                  <p ><strong>Overview:</strong> {{film.overview}}</p>
+                </div>
 
-        <img v-if="film.poster_path == null"
+          </div>
+
+
+        <!-- immagine copertina -->
+        <img class="img" v-if="film.poster_path == null"
              :src="'flagsimg/' + imgNull"
-             style="width:185px;height:250px;"
-             @mouseover="hover === true"
-             :class="{ active: hover === true }">
-        <img v-else :src="'https://image.tmdb.org/t/p//w185' + film.poster_path"
-             @mouseover="hover === true"
-             :class="{ active: hover === true }">
+             style="width:342px;height:500px;">
+
+        <img class="img" v-else :src="'https://image.tmdb.org/t/p//w342' + film.poster_path"
+             >
       </div>
+
+
       <!-- TV SERIES -->
-      <div v-for="(serie,index) in myTVseries" class="box">
-        <ol>
-          <li>Titolo: {{serie.name}}</li>
-          <li>Titolo Originale: {{serie.original_name}}</li>
-          <li>Lingua: <img :src="'flagsimg/' + serie.original_language + '.svg' " style="width:20px;height:20px;">
-          {{serie.original_language}}
-          </li>
-          <li>Voto: {{serie.vote_average}}
+      <div v-for="(serie,index) in myTVseries" class="boximage">
+        <!-- text -->
+        <div class="text">
+
+          <h2 class="title">{{serie.name}}</h2>
+          <h2 class="originalTitle">{{serie.original_name}}</h2>
+          <img :src="'flagsimg/' + serie.original_language + '.svg' " style="width:60px;height:60px;">
+
             <div class="stars">
               <i :class="{yellowstar: serie.vote_average >= 1 }" class="fas fa-star"></i>
               <i :class="{yellowstar: serie.vote_average >= 2 }" class="fas fa-star"></i>
@@ -75,19 +77,26 @@
               <i :class="{yellowstar: serie.vote_average >= 4 }" class="fas fa-star"></i>
               <i :class="{yellowstar: serie.vote_average == 5 }" class="fas fa-star"></i>
             </div>
-          </li>
-        </ol>
-        <img v-if="serie.poster_path == null"
+
+            <!-- div for overview -->
+            <div class="overview">
+              <p ><strong>Overview:</strong> {{serie.overview}}</p>
+            </div>
+
+
+
+        </div>
+
+        <!-- image -->
+        <img class="img" v-if="serie.poster_path == null"
              :src="'flagsimg/' + imgNull"
-             style="width:185px;height:250px;"
-             @mouseover="hover === true"
-             :class="{ active: hover === true }">
-        <img v-else :src="'https://image.tmdb.org/t/p//w185' + serie.poster_path"
-             @mouseover="hover === true"
-             :class="{ active: hover === true }">
-      </div>
+             style="width:342px;height:500px;"
+             >
+        <img class="img" v-else :src="'https://image.tmdb.org/t/p//w342' + serie.poster_path"
+             >
       </div>
     </div>
+  </div>
 
 
 

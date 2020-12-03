@@ -34,12 +34,10 @@ body{
   font-size: 20px;
 }
 
-.box{
-  padding: 20px;
-  border: 2px solid grey;
-  border-radius: 20px;
-  max-width: 30%;
+.boximage{
   color: black;
+  position: relative;
+  margin-bottom: 50px;
 }
 
 i{
@@ -51,20 +49,56 @@ i{
 }
 
 .flex{
-  width: 80%;
+  width: 88%;
   margin: auto;
   min-height: 200px;
-  background-color: white;
   padding: 5%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.hidden{
-  display: none;
+.img{
+  display: block;
+  border-radius: 20px;
 }
 
-.active{
-  display: block;
+.text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 20px;
+}
+
+.text > * {
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+
+.text:hover > *{
+  transform: translateY(0);
+}
+
+.text:hover{
+  opacity: 1;
+}
+
+h2{
+  text-align: center;
+}
+
+.overview{
+  width: 90%;
+  height: 180px;
+  overflow-y: scroll;
 }
