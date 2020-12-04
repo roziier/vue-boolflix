@@ -19,6 +19,8 @@ body{
 
 #logo{
   margin-left: 20px;
+  width:260px;
+  height:60px;
 }
 
 .search_wrap{
@@ -165,4 +167,23 @@ h2{
 .search_wrap.search_wrap_3 .search_box .btn{
   right: 0;
   border-radius: 50%;
+}
+
+/* RESPONSIVE */
+
+@media all and (max-width: 950px) {
+
+  .img{
+    display: block;
+    border-radius: 20px;
+    height: 300px;
+    width: 185px;
+  }
+
+  #logo{
+    margin-left: 10px;
+    width:180px;
+    height:50px;
+  }
+
 }
