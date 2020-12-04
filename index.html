@@ -62,7 +62,13 @@
                   <i :class="{yellowstar: film.vote_average == 5 }" class="fas fa-star"></i>
                 </div>
                 <!-- more details -->
-                <button type="button" name="button" @click="moreDetails(film.id)">More Details</button>
+                <div class="button">
+                  <button type="button" name="button" @click="moreDetails(film.id)">More Details</button>
+                  <ul>
+                    <li v-for="(genres,index) in myGenres">{{genres}}</li>
+                  </ul>
+                </div>
+
                 <!-- div for overview -->
                 <div class="overview">
                   <p v-if="film.overview === '' "><strong>Overview:</strong> COMING SOON</p>

@@ -9,7 +9,9 @@ var app = new Vue({
     myFilms: [],
     myTVseries: [],
     imgNull: 'black.jpeg',
-    showSearched: false
+    showSearched: false,
+    myGenres: [],
+    indiceContattoAttivo: false
   },
   methods: {
     callAPI: function () {
@@ -49,12 +51,18 @@ var app = new Vue({
       })
     }
     ,
+    
 
     // API to add genres and cast
     moreDetails: function (indexFilm) {
       axios.get('https://api.themoviedb.org/3/movie/' + indexFilm + '?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
       .then(response => {
-        console.log(response);
+        let road = response.data.genres
+        for (var i = 0; i < road.length; i++) {
+          this.myGenres.push(road[i].name);
+          console.log(this.myGenres);
+        }
+
       })
     }
 
