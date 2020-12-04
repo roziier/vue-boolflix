@@ -26,7 +26,7 @@ var app = new Vue({
         for (var i = 0; i < this.myFilms.length; i++) {
           this.myFilms[i].vote_average = Math.round(this.myFilms[i].vote_average / 2);
         }
-        console.log('array films: ' + this.myFilms);
+        console.log('array films: ', this.myFilms);
 
       })
 
@@ -46,7 +46,7 @@ var app = new Vue({
         for (var i = 0; i < this.myTVseries.length; i++) {
           this.myTVseries[i].vote_average = Math.round(this.myTVseries[i].vote_average / 2);
         }
-        console.log('array tv series: ' + response);
+        console.log('array tv series: ', response);
 
       })
 
