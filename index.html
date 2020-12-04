@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <!-- responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
   </head>
   <body>
 
@@ -36,10 +39,16 @@
       <!-- contenitore flex -->
     <div class="flex">
 
+    <!-- searched space -->
+    <div class="searchedSpace">
+      <h1 v-if="!showSearched"></h1>
+      <h1 v-else>Results for : '{{userSearch}}'</h1>
+    </div>
+
       <!-- FILMS -->
       <div v-for="(film,index) in myFilms" class="boximage">
           <!-- text -->
-          <div class="text" >
+          <div class="text">
 
               <h2 class="title">{{film.title}}</h2>
               <h2 class="originalTitle">{{film.original_title}}</h2>
@@ -52,6 +61,8 @@
                   <i :class="{yellowstar: film.vote_average >= 4 }" class="fas fa-star"></i>
                   <i :class="{yellowstar: film.vote_average == 5 }" class="fas fa-star"></i>
                 </div>
+                <!-- more details -->
+                <button type="button" name="button" @click="moreDetails(film.id)">More Details</button>
                 <!-- div for overview -->
                 <div class="overview">
                   <p v-if="film.overview === '' "><strong>Overview:</strong> COMING SOON</p>
