@@ -72,23 +72,6 @@ body{
   font-size: 20px;
 }
 
-/* .search{
-  height: 40%;
-  width: 30%;
-}
-
-.search input{
-  border: 1px solid white;
-  border-radius: 10px;
-  height: 100%;
-  width: 80%;
-  font-size: 20px;
-}
-
-.search button {
-  font-size: 20px;
-} */
-
 .boximage{
   color: black;
   position: relative;
@@ -156,7 +139,7 @@ h2{
 
 .overview{
   width: 90%;
-  height: 180px;
+  height: 140px;
   overflow-y: scroll;
 }
 
@@ -182,14 +165,30 @@ h2{
 }
 
 
-button{
-  padding: 8px;
+.button > button{
+  padding: 12px;
+  border-radius: 50px;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 50px;
+  width: 120px;
+  opacity: 1;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: silver 1px solid;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color: white;
 }
 
-.details, .button{
+.details,
+.button{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 
 /* RESPONSIVE */
