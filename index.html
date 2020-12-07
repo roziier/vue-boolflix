@@ -63,9 +63,9 @@
                 </div>
                 <!-- more details -->
                 <div class="button">
-                  <button type="button" name="button" @click="moreDetails(film.id)">More Details</button>
+                  <button type="button" name="button" @click="moreDetails(film.id), attivoFilm(index)">More Details</button>
                   <ul>
-                    <li v-for="(genres,index) in myGenres">{{genres}}</li>
+                    <li v-if="film.indiceFilmAttivo == false" v-for="genres in myGenres">{{genres}}</li>
                   </ul>
                 </div>
 

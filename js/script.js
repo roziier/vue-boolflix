@@ -10,8 +10,7 @@ var app = new Vue({
     myTVseries: [],
     imgNull: 'black.jpeg',
     showSearched: false,
-    myGenres: [],
-    indiceContattoAttivo: false
+    myGenres: []
   },
   methods: {
     callAPI: function () {
@@ -28,7 +27,11 @@ var app = new Vue({
         this.myFilms = response.data.results;
         for (var i = 0; i < this.myFilms.length; i++) {
           this.myFilms[i].vote_average = Math.round(this.myFilms[i].vote_average / 2);
-        }
+        };
+        this.myFilms.forEach((item) => {
+          item.indiceFilmAttivo = true
+        });
+
         this.showSearched = true;
         console.log('array films: ', this.myFilms);
       }),
@@ -46,12 +49,23 @@ var app = new Vue({
         this.myTVseries = response.data.results;
         for (var i = 0; i < this.myTVseries.length; i++) {
           this.myTVseries[i].vote_average = Math.round(this.myTVseries[i].vote_average / 2);
-        }
+        };
+        this.myTVseries.forEach((item) => {
+          item.indiceFilmAttivo = true
+        });
         console.log('array tv series: ', response);
       })
     }
     ,
-    
+
+    attivoFilm: function (indiceFilm) {
+      this.myGenres = [];
+      for (var i = 0; i < this.myFilms.length; i++) {
+        this.myFilms[i].indiceFilmAttivo = true
+      }
+      this.myFilms[indiceFilm].indiceFilmAttivo = false
+    },
+
 
     // API to add genres and cast
     moreDetails: function (indexFilm) {
