@@ -63,11 +63,17 @@
                 </div>
                 <!-- more details -->
                 <div class="button">
-                  <button type="button" name="button" @click="moreDetails(film.id), attivoFilm(index)">More Details</button>
+                  <button type="button" name="button" @click="FilmG(film.id), attivoFilm(index)">Genres</button>
+                  <button type="button" name="button" @click="FilmCast(film.id), attivoFilm(index)" >Cast</button>
+                </div>
+                <div class="details">
                   <ul>
                     <li v-if="film.indiceFilmAttivo == false" v-for="genres in myGenres">{{genres}}</li>
+                    <li v-if="film.indiceFilmAttivo == false" v-for="cast in myCast">{{cast}}</li>
                   </ul>
                 </div>
+
+
 
                 <!-- div for overview -->
                 <div class="overview">
@@ -103,6 +109,18 @@
               <i :class="{yellowstar: serie.vote_average >= 3 }" class="fas fa-star"></i>
               <i :class="{yellowstar: serie.vote_average >= 4 }" class="fas fa-star"></i>
               <i :class="{yellowstar: serie.vote_average == 5 }" class="fas fa-star"></i>
+            </div>
+
+            <!-- more details -->
+            <div class="button">
+              <button type="button" name="button" @click="tVG(serie.id), attivoTV(index)">Genres</button>
+              <button type="button" name="button" @click="TVCast(serie.id), attivoTV(index)">Cast</button>
+            </div>
+            <div class="details">
+              <ul>
+                <li v-if="serie.indiceTVAttivo == false" v-for="genres in myGenres">{{genres}}</li>
+                <li v-if="serie.indiceTVAttivo == false" v-for="cast in myCast">{{cast}}</li>
+              </ul>
             </div>
 
             <!-- div for overview -->

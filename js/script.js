@@ -10,7 +10,8 @@ var app = new Vue({
     myTVseries: [],
     imgNull: 'black.jpeg',
     showSearched: false,
-    myGenres: []
+    myGenres: [],
+    myCast: []
   },
   methods: {
     callAPI: function () {
@@ -51,34 +52,82 @@ var app = new Vue({
           this.myTVseries[i].vote_average = Math.round(this.myTVseries[i].vote_average / 2);
         };
         this.myTVseries.forEach((item) => {
-          item.indiceFilmAttivo = true
+          item.indiceTVAttivo = true
         });
         console.log('array tv series: ', response);
       })
-    }
-    ,
+    },
 
+
+    // function to activate index film
     attivoFilm: function (indiceFilm) {
       this.myGenres = [];
+      this.myCast = [];
       for (var i = 0; i < this.myFilms.length; i++) {
         this.myFilms[i].indiceFilmAttivo = true
       }
       this.myFilms[indiceFilm].indiceFilmAttivo = false
     },
 
+    // function to activate index tv series
+    attivoTV: function (indiceTV) {
+      this.myGenres = [];
+      this.myCast = [];
+      for (var i = 0; i < this.myTVseries.length; i++) {
+        this.myTVseries[i].indiceTVAttivo = true
+      }
+      this.myTVseries[indiceTV].indiceTVAttivo = false
+    },
 
-    // API to add genres and cast
-    moreDetails: function (indexFilm) {
-      axios.get('https://api.themoviedb.org/3/movie/' + indexFilm + '?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
+    // API to add genres
+    FilmG: function (iDFilm) {
+      axios.get('https://api.themoviedb.org/3/movie/' + iDFilm + '?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
       .then(response => {
         let road = response.data.genres
         for (var i = 0; i < road.length; i++) {
           this.myGenres.push(road[i].name);
-          console.log(this.myGenres);
+
+        }
+      })
+    },
+
+    tVG: function (iDTV) {
+      axios.get('https://api.themoviedb.org/3/tv/' + iDTV + '?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
+      .then(response => {
+        let road = response.data.genres
+        for (var i = 0; i < road.length; i++) {
+          this.myGenres.push(road[i].name);
+
+        }
+      })
+    },
+
+    // API to add Cast
+    FilmCast: function (iDFilm) {
+      axios.get('https://api.themoviedb.org/3/movie/' + iDFilm + '/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
+      .then(response => {
+
+        let road = response.data.cast
+        for (var i = 0; i < 5; i++) {
+          this.myCast.push(road[i].name);
+        }
+
+      })
+    },
+
+    TVCast: function (iDFilm) {
+      axios.get('https://api.themoviedb.org/3/tv/' + iDFilm + '/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT')
+      .then(response => {
+
+        let road = response.data.cast
+        for (var i = 0; i < 5; i++) {
+          this.myCast.push(road[i].name);
         }
 
       })
     }
+
+
 
 
   }

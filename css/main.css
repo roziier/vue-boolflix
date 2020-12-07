@@ -181,6 +181,17 @@ h2{
   margin-left: 20px;
 }
 
+
+button{
+  padding: 8px;
+}
+
+.details, .button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* RESPONSIVE */
 
 @media all and (max-width: 950px) {
