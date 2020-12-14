@@ -78,6 +78,10 @@ body{
   margin-bottom: 50px;
 }
 
+.boximage:hover{
+  transform: scale(1.1);
+}
+
 i{
   color: grey;
 }
@@ -131,6 +135,7 @@ i{
 
 .text:hover{
   opacity: 1;
+
 }
 
 h2{
