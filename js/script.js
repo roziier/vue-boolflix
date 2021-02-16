@@ -13,6 +13,9 @@ var app = new Vue({
     myGenres: [],
     myCast: [],
     showModal: false,
+    selTit: "",
+    selOver: "",
+    imgBck: "",
   },
   methods: {
     callAPI: function () {
@@ -150,7 +153,7 @@ var app = new Vue({
         });
     },
 
-    FilmMoreDetails: function (iDFilm) {
+    FilmMoreDetails: function (iDFilm, indiceFilm) {
       axios
         .get(
           "https://api.themoviedb.org/3/movie/" +
@@ -158,9 +161,31 @@ var app = new Vue({
             "?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
         )
         .then((response) => {
-          console.log(response);
+          this.selTit = response.data.original_title;
+          this.selOver = response.data.overview;
+          this.imgBck = response.data.backdrop_path;
+          let road = response.data.genres;
+          for (var i = 0; i < road.length; i++) {
+            this.myGenres.push(road[i].name);
+          }
         });
+
+      axios
+        .get(
+          "https://api.themoviedb.org/3/movie/" +
+            iDFilm +
+            "/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
+        )
+        .then((response) => {
+          let road = response.data.cast;
+
+          for (var i = 0; i < 5; i++) {
+            this.myCast.push(road[i].name);
+          }
+        });
+
       this.showModal = true;
+      this.attivoFilm(indiceFilm);
     },
   },
 });
