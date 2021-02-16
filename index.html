@@ -1,68 +1,107 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Boolfix</title>
     <!-- css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <!-- axios -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"
+      integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
+      crossorigin="anonymous"
+    ></script>
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap  -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <!-- responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- font  -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-
-  <div id="app">
+    <div id="app">
+      <!-- header -->
       <nav class="nav">
-        <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/320px-Netflix_2015_logo.svg.png">
+        <img
+          id="logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/320px-Netflix_2015_logo.svg.png"
+        />
 
-        <div class="search_wrap search_wrap_3">
-          <div class="search_box">
-            <input type="text" v-model="userSearch" class="input" placeholder="Search...">
-            <div @click="callAPI"
-               class="btn btn_common">
-               <i class="fas fa-search"></i>
-            </div>
+        <div class="nuovo">
+          <input type="search" v-model="userSearch" placeholder="Search..." />
+          <div @click="callAPI" class="btn btn-danger frame">
+            <i class="fas fa-search"></i>
           </div>
         </div>
-
       </nav>
 
-
       <!-- contenitore flex -->
-    <div class="flex">
+      <div class="flex">
+        <!-- searched space -->
+        <div class="searchedSpace">
+          <h1 v-if="!showSearched"></h1>
+          <h1 v-else>Results for : '{{userSearch}}'</h1>
+        </div>
 
-    <!-- searched space -->
-    <div class="searchedSpace">
-      <h1 v-if="!showSearched"></h1>
-      <h1 v-else>Results for : '{{userSearch}}'</h1>
-    </div>
-
-      <!-- FILMS -->
-      <div v-for="(film,index) in myFilms" class="boximage">
+        <!-- FILMS -->
+        <div v-for="(film,index) in myFilms" class="boximage">
           <!-- text -->
           <div class="text">
+            <h2 class="title">{{film.title}}</h2>
+            <h2 class="originalTitle">{{film.original_title}}</h2>
+            <img
+              :src="'flagsimg/' + film.original_language + '.svg' "
+              style="width: 60px; height: 60px"
+            />
+            <!-- div for stars -->
+            <div class="stars">
+              <i
+                :class="{yellowstar: film.vote_average >= 1 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: film.vote_average >= 2 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: film.vote_average >= 3 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: film.vote_average >= 4 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: film.vote_average == 5 }"
+                class="fas fa-star"
+              ></i>
+            </div>
+            <button
+              class="btn btn-secondary btn-lg"
+              @click="FilmMoreDetails(film.id), attivoFilm(index)"
+            >
+              More Details
+            </button>
 
-              <h2 class="title">{{film.title}}</h2>
-              <h2 class="originalTitle">{{film.original_title}}</h2>
-              <img :src="'flagsimg/' + film.original_language + '.svg' " style="width:60px;height:60px;">
-                <!-- div for stars -->
-                <div class="stars">
-                  <i :class="{yellowstar: film.vote_average >= 1 }" class="fas fa-star"></i>
-                  <i :class="{yellowstar: film.vote_average >= 2 }" class="fas fa-star"></i>
-                  <i :class="{yellowstar: film.vote_average >= 3 }" class="fas fa-star"></i>
-                  <i :class="{yellowstar: film.vote_average >= 4 }" class="fas fa-star"></i>
-                  <i :class="{yellowstar: film.vote_average == 5 }" class="fas fa-star"></i>
-                </div>
-                <!-- more details -->
-                <div class="button">
+            <!-- <div class="button">
                   <button type="button" name="button" @click="FilmG(film.id), attivoFilm(index)">Genres</button>
                   <button type="button" name="button" @click="FilmCast(film.id), attivoFilm(index)" >Cast</button>
                 </div>
@@ -71,85 +110,141 @@
                     <li v-if="film.indiceFilmAttivo == false" v-for="genres in myGenres">{{genres}}</li>
                     <li v-if="film.indiceFilmAttivo == false" v-for="cast in myCast">{{cast}}</li>
                   </ul>
-                </div>
+                </div> -->
 
-
-
-                <!-- div for overview -->
-                <div class="overview">
+            <!-- div for overview -->
+            <!-- <div class="overview">
                   <p v-if="film.overview === '' "><strong>Overview:</strong> COMING SOON</p>
                   <p v-else><strong>Overview:</strong> {{film.overview}}</p>
-                </div>
-
+                </div> -->
           </div>
 
+          <!-- immagine copertina -->
+          <img
+            class="img"
+            v-if="film.poster_path == null"
+            :src="'flagsimg/' + imgNull"
+            style="width: 342px; height: 500px"
+          />
 
-        <!-- immagine copertina -->
-        <img class="img" v-if="film.poster_path == null"
-             :src="'flagsimg/' + imgNull"
-             style="width:342px;height:500px;">
+          <img
+            class="img"
+            v-else
+            :src="'https://image.tmdb.org/t/p//w342' + film.poster_path"
+          />
+        </div>
 
-        <img class="img" v-else :src="'https://image.tmdb.org/t/p//w342' + film.poster_path"
-             >
-      </div>
-
-
-      <!-- TV SERIES -->
-      <div v-for="(serie,index) in myTVseries" class="boximage">
-        <!-- text -->
-        <div class="text" >
-
-          <h2 class="title">{{serie.name}}</h2>
-          <h2 class="originalTitle">{{serie.original_name}}</h2>
-          <img :src="'flagsimg/' + serie.original_language + '.svg' " style="width:60px;height:60px;">
+        <!-- TV SERIES -->
+        <div v-for="(serie,index) in myTVseries" class="boximage">
+          <!-- text -->
+          <div class="text">
+            <h2 class="title">{{serie.name}}</h2>
+            <h2 class="originalTitle">{{serie.original_name}}</h2>
+            <img
+              :src="'flagsimg/' + serie.original_language + '.svg' "
+              style="width: 60px; height: 60px"
+            />
 
             <div class="stars">
-              <i :class="{yellowstar: serie.vote_average >= 1 }" class="fas fa-star"></i>
-              <i :class="{yellowstar: serie.vote_average >= 2 }" class="fas fa-star"></i>
-              <i :class="{yellowstar: serie.vote_average >= 3 }" class="fas fa-star"></i>
-              <i :class="{yellowstar: serie.vote_average >= 4 }" class="fas fa-star"></i>
-              <i :class="{yellowstar: serie.vote_average == 5 }" class="fas fa-star"></i>
+              <i
+                :class="{yellowstar: serie.vote_average >= 1 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: serie.vote_average >= 2 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: serie.vote_average >= 3 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: serie.vote_average >= 4 }"
+                class="fas fa-star"
+              ></i>
+              <i
+                :class="{yellowstar: serie.vote_average == 5 }"
+                class="fas fa-star"
+              ></i>
             </div>
 
             <!-- more details -->
             <div class="button">
-              <button type="button" name="button" @click="tVG(serie.id), attivoTV(index)">Genres</button>
-              <button type="button" name="button" @click="TVCast(serie.id), attivoTV(index)">Cast</button>
+              <button
+                type="button"
+                name="button"
+                @click="tVG(serie.id), attivoTV(index)"
+              >
+                Genres
+              </button>
+              <button
+                type="button"
+                name="button"
+                @click="TVCast(serie.id), attivoTV(index)"
+              >
+                Cast
+              </button>
             </div>
             <div class="details">
               <ul>
-                <li v-if="serie.indiceTVAttivo == false" v-for="genres in myGenres">{{genres}}</li>
-                <li v-if="serie.indiceTVAttivo == false" v-for="cast in myCast">{{cast}}</li>
+                <li
+                  v-if="serie.indiceTVAttivo == false"
+                  v-for="genres in myGenres"
+                >
+                  {{genres}}
+                </li>
+                <li v-if="serie.indiceTVAttivo == false" v-for="cast in myCast">
+                  {{cast}}
+                </li>
               </ul>
             </div>
 
             <!-- div for overview -->
             <div class="overview">
-              <p v-if="serie.overview === '' "><strong>Overview:</strong> COMING SOON</p>
+              <p v-if="serie.overview === '' ">
+                <strong>Overview:</strong> COMING SOON
+              </p>
               <p v-else><strong>Overview:</strong> {{serie.overview}}</p>
             </div>
+          </div>
 
-
-
+          <!-- image -->
+          <img
+            class="img"
+            v-if="serie.poster_path == null"
+            :src="'flagsimg/' + imgNull"
+            style="width: 342px; height: 500px"
+          />
+          <img
+            class="img"
+            v-else
+            :src="'https://image.tmdb.org/t/p//w342' + serie.poster_path"
+          />
         </div>
-
-        <!-- image -->
-        <img class="img" v-if="serie.poster_path == null"
-             :src="'flagsimg/' + imgNull"
-             style="width:342px;height:500px;"
-             >
-        <img class="img" v-else :src="'https://image.tmdb.org/t/p//w342' + serie.poster_path"
-             >
       </div>
     </div>
-  </div>
 
-
-
-
-
+    <!-- more details -->
+    <div class="overlay" v-if="showModal">
+      <div class="window">
+        <div class="header">
+          <h2>I'm a modal window</h2>
+          <button @click="showModal = !showModal" class="close_window">
+            &times;
+          </button>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod commodi
+          possimus quasi dolorem unde voluptate error doloribus labore,
+          obcaecati cum nesciunt harum necessitatibus consequatur autem saepe
+          magni corrupti placeat fugiat. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quod commodi possimus quasi dolorem unde voluptate
+          error doloribus labore, obcaecati cum nesciunt harum necessitatibus
+          consequatur autem saepe magni corrupti placeat fugiat.
+        </p>
+      </div>
+    </div>
 
     <script src="js/script.js"></script>
-
   </body>
 </html>
