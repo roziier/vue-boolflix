@@ -212,7 +212,7 @@ h2 {
 
 /* OVERLAY */
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -222,6 +222,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 99;
 }
 
 .window {
@@ -269,7 +270,6 @@ h2 {
   width: 80%;
   min-height: 90%;
   padding: 20px;
-  text-align: center;
 }
 
 .bigger {
@@ -298,6 +298,9 @@ h2 {
   align-items: center;
 }
 
+.header h2 {
+  font-size: 30px;
+}
 .close_window {
   font-size: 40px;
   color: white;
