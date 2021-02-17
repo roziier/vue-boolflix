@@ -91,68 +91,7 @@ var app = new Vue({
       this.myTVseries[indiceTV].indiceTVAttivo = false;
     },
 
-    // API to add genres
-    FilmG: function (iDFilm) {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/movie/" +
-            iDFilm +
-            "?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
-        )
-        .then((response) => {
-          let road = response.data.genres;
-          for (var i = 0; i < road.length; i++) {
-            this.myGenres.push(road[i].name);
-          }
-        });
-    },
-
-    tVG: function (iDTV) {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/tv/" +
-            iDTV +
-            "?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
-        )
-        .then((response) => {
-          let road = response.data.genres;
-          for (var i = 0; i < road.length; i++) {
-            this.myGenres.push(road[i].name);
-          }
-        });
-    },
-
-    // API to add Cast
-    FilmCast: function (iDFilm) {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/movie/" +
-            iDFilm +
-            "/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
-        )
-        .then((response) => {
-          let road = response.data.cast;
-          for (var i = 0; i < 5; i++) {
-            this.myCast.push(road[i].name);
-          }
-        });
-    },
-
-    TVCast: function (iDFilm) {
-      axios
-        .get(
-          "https://api.themoviedb.org/3/tv/" +
-            iDFilm +
-            "/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
-        )
-        .then((response) => {
-          let road = response.data.cast;
-          for (var i = 0; i < 5; i++) {
-            this.myCast.push(road[i].name);
-          }
-        });
-    },
-
+    // chiamata more details film
     FilmMoreDetails: function (iDFilm, indiceFilm) {
       axios
         .get(
@@ -186,6 +125,43 @@ var app = new Vue({
 
       this.showModal = true;
       this.attivoFilm(indiceFilm);
+    },
+
+    // chiamata more details tv series
+    TVMoreDetails: function (iDTV, indiceTV) {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/tv/" +
+            iDTV +
+            "?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
+        )
+        .then((response) => {
+          console.log(response);
+          this.selTit = response.data.original_name;
+          this.selOver = response.data.overview;
+          this.imgBck = response.data.backdrop_path;
+          let road = response.data.genres;
+          for (var i = 0; i < road.length; i++) {
+            this.myGenres.push(road[i].name);
+          }
+        });
+
+      axios
+        .get(
+          "https://api.themoviedb.org/3/tv/" +
+            iDTV +
+            "/credits?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT"
+        )
+        .then((response) => {
+          let road = response.data.cast;
+
+          for (var i = 0; i < 5; i++) {
+            this.myCast.push(road[i].name);
+          }
+        });
+
+      this.showModal = true;
+      this.attivoTV(indiceTV);
     },
   },
 });

@@ -37,6 +37,7 @@
     />
   </head>
   <body>
+
     <div id="app">
       <!-- header -->
       <nav class="nav">
@@ -51,13 +52,6 @@
             <i class="fas fa-search"></i>
           </div>
         </div>
-
-        <!-- <div class="nuovo">
-          <input type="search" v-model="userSearch" placeholder="Search..." />
-          <div @click="callAPI" class="btn btn-danger frame">
-            <i class="fas fa-search"></i>
-          </div>
-        </div> -->
       </nav>
 
       <!-- contenitore flex -->
@@ -101,29 +95,9 @@
                 class="fas fa-star"
               ></i>
             </div>
-            <button
-              class="btn btn-secondary btn-lg"
-              @click="FilmMoreDetails(film.id, index)"
-            >
+            <button class="example_c" @click="FilmMoreDetails(film.id, index)">
               More Details
             </button>
-
-            <!-- <div class="button">
-                  <button type="button" name="button" @click="FilmG(film.id), attivoFilm(index)">Genres</button>
-                  <button type="button" name="button" @click="FilmCast(film.id), attivoFilm(index)" >Cast</button>
-                </div>
-                <div class="details">
-                  <ul>
-                    <li v-for="genres in myGenres">{{genres}}</li>
-                    <li v-if="film.indiceFilmAttivo == false" v-for="cast in myCast">{{cast}}</li>
-                  </ul>
-                </div> -->
-
-            <!-- div for overview -->
-            <!-- <div class="overview">
-                  <p v-if="film.overview === '' "><strong>Overview:</strong> COMING SOON</p>
-                  <p v-else><strong>Overview:</strong> {{film.overview}}</p>
-                </div> -->
           </div>
 
           <!-- immagine copertina -->
@@ -131,16 +105,18 @@
             class="img"
             v-if="film.poster_path == null"
             :src="'flagsimg/' + imgNull"
-            style="width: 342px; height: 500px"
+            
           />
 
           <img
             class="img"
             v-else
-            :src="'https://image.tmdb.org/t/p//w342' + film.poster_path"
+            :src="'https://image.tmdb.org/t/p//w185' + film.poster_path"
           />
         </div>
+        
 
+        <!-- overlay films&tvseries  -->
         <div class="overlay" v-if="showModal">
           <div class="window">
             <img
@@ -154,21 +130,19 @@
                   &times;
                 </button>
               </div>
+              <br />
+              <br />
               <div v-if="selOver == '' ">Trama: NOT AVAIBLE</div>
               <div v-else>Trama: {{selOver}}</div>
               <br />
               <br />
               <div class="lists">
-                <ul>
-                  <li class="bigger">Genres</li>
-                  <br />
-                  <li v-for="genre in myGenres">{{genre}}</li>
-                </ul>
-                <ul>
-                  <li class="bigger">Cast</li>
-                  <br />
-                  <li v-for="cast in myCast">{{cast}}</li>
-                </ul>
+                
+                <div>
+                  Genre: {{myGenres}}</span>
+                </div>
+                <div>Cast: {{myCast}}</div>
+                
               </div>
             </div>
           </div>
@@ -207,63 +181,26 @@
                 class="fas fa-star"
               ></i>
             </div>
-
-            <!-- more details -->
-            <div class="button">
-              <button
-                type="button"
-                name="button"
-                @click="tVG(serie.id), attivoTV(index)"
-              >
-                Genres
-              </button>
-              <button
-                type="button"
-                name="button"
-                @click="TVCast(serie.id), attivoTV(index)"
-              >
-                Cast
-              </button>
-            </div>
-            <div class="details">
-              <ul>
-                <li
-                  v-if="serie.indiceTVAttivo == false"
-                  v-for="genres in myGenres"
-                >
-                  {{genres}}
-                </li>
-                <li v-if="serie.indiceTVAttivo == false" v-for="cast in myCast">
-                  {{cast}}
-                </li>
-              </ul>
-            </div>
-
-            <!-- div for overview -->
-            <div class="overview">
-              <p v-if="serie.overview === '' ">
-                <strong>Overview:</strong> COMING SOON
-              </p>
-              <p v-else><strong>Overview:</strong> {{serie.overview}}</p>
-            </div>
-          </div>
+            <button class="example_c" @click="TVMoreDetails(serie.id, index)">
+              More Details
+            </button>
+           
+          </div> 
 
           <!-- image -->
           <img
             class="img"
             v-if="serie.poster_path == null"
             :src="'flagsimg/' + imgNull"
-            style="width: 342px; height: 500px"
           />
           <img
             class="img"
             v-else
-            :src="'https://image.tmdb.org/t/p//w342' + serie.poster_path"
+            :src="'https://image.tmdb.org/t/p//w185' + serie.poster_path"
           />
         </div>
       </div>
 
-      <!-- more details -->
     </div>
 
     <script src="js/script.js"></script>
