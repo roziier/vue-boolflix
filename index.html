@@ -143,27 +143,34 @@
 
         <div class="overlay" v-if="showModal">
           <div class="window">
-            <!-- <img
+            <img
               :src="'https://image.tmdb.org/t/p/original' + imgBck"
               class="backdrop"
-            /> -->
-            <div class="header">
-              <h2>{{selTit}}</h2>
-              <button @click="showModal = !showModal" class="close_window">
-                &times;
-              </button>
+            />
+            <div class="bg-text">
+              <div class="header">
+                <h2>{{selTit}}</h2>
+                <button @click="showModal = !showModal" class="close_window">
+                  &times;
+                </button>
+              </div>
+              <div v-if="selOver == '' ">Trama: NOT AVAIBLE</div>
+              <div v-else>Trama: {{selOver}}</div>
+              <br />
+              <br />
+              <div class="lists">
+                <ul>
+                  <li class="bigger">Genres</li>
+                  <br />
+                  <li v-for="genre in myGenres">{{genre}}</li>
+                </ul>
+                <ul>
+                  <li class="bigger">Cast</li>
+                  <br />
+                  <li v-for="cast in myCast">{{cast}}</li>
+                </ul>
+              </div>
             </div>
-            <div v-if="selOver == '' ">Trama: NOT AVAIBLE</div>
-            <div v-else>Trama: {{selOver}}</div>
-            <ul>
-              <li v-for="genre in myGenres">{{genre}}</li>
-            </ul>
-            <ul>
-              <li v-for="cast in myCast">{{cast}}</li>
-            </ul>
-
-            <div></div>
-            <div></div>
           </div>
         </div>
 
