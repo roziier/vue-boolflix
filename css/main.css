@@ -267,6 +267,7 @@ h2 {
   transform: translate(-50%, -50%);
   z-index: 2;
   width: 80%;
+  min-height: 90%;
   padding: 20px;
   text-align: center;
 }
@@ -332,5 +333,14 @@ h2 {
 
   .container:hover input {
     width: 190px;
+  }
+
+  .bg-text {
+    font-size: 10px;
+  }
+
+  .window {
+    width: 90%;
+    height: 90%;
   }
 }
