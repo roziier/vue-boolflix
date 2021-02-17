@@ -336,11 +336,15 @@ h2 {
   }
 
   .bg-text {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .window {
     width: 90%;
-    height: 90%;
+    height: 80%;
+  }
+
+  .searchedSpace h1 {
+    font-size: 20px;
   }
 }
